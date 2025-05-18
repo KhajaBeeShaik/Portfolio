@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khaja Bee Shaik Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer>
+    function downloadResume() {
+      const resumeUrl = './src/Khaja_Bee_Shaik_Resume.pdf';
+      const link = document.createElement('a');
+      link.href = resumeUrl;
+      link.download = 'Khaja_Bee_Shaik_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.getElementById('menuBtn');
+      const navLinks = document.getElementById('navLinks');
+
+      if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
+
+      function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const navHeight = document.querySelector('.navbar') ? document.querySelector('.navbar').offsetHeight : 0;
+          const targetPosition = section.offsetTop - navHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+
+      window.scrollToSection = scrollToSection;
+
+      document.addEventListener('click', (e) => {
+        if (navLinks && navLinks.classList.contains('active') &&
+            !e.target.closest('.navbar')) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(section);
+      });
+    });
+  </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <span class="nav-brand">Khaja Bee Shaik</span>
+                <button class="mobile-menu-btn" id="menuBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" x2="20" y1="12" y2="12"></line>
+                        <line x1="4" x2="20" y1="6" y2="6"></line>
+                        <line x1="4" x2="20" y1="18" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="nav-links" id="navLinks">
+                    <button onclick="scrollToSection('about')">About</button>
+                    <button onclick="scrollToSection('education')">Education</button>
+                    <button onclick="scrollToSection('skills')">Skills</button>
+                    <button onclick="scrollToSection('projects')">Projects</button>
+                    <button onclick="scrollToSection('experience')">Experience</button>
+                    <button onclick="downloadResume()">📄Resume</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="about" class="about-section">
+            <div class="about-content">
+                <div class="profile-image">
+                    <img src="src/Khaja_Bee_Shaik_Photo2.jpg" alt="Profile">
+                </div>
+                <div class="about-text">
+                    <h1>Khaja Bee Shaik</h1>
+                    <p class="title">Software Developer, Data Engineer & Analytics</p>
+                    <div class="social-links">
+                        <a href="https://github.com/shaik320" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                                <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/khaja-bee-shaik-7880781b2/" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect width="4" height="12" x="2" y="9"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="description">
+                        👋 Hi, I’m Khaja Bee Shaik-a passionate technologist with a knack for building smart, scalable solutions that bridge the worlds of software development and data engineering. With an MS in Information Technology and hands-on experience across cloud platforms, I thrive on turning complex problems into elegant, real-world applications. From crafting full-stack web platforms to architecting real-time data pipelines on AWS, I love transforming ideas into robust products that deliver real impact. Whether it’s designing secure authentication systems, automating data workflows, or visualizing insights from millions of records, I bring creativity, precision, and a drive for excellence to every project. Curious about how I blend code, data, and cloud to solve today’s toughest challenges?
+                         Dive into my portfolio to see the skills, stories, and solutions that set me apart.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <div class="education-list">
+                <div class="education-item">
+                    <div class="education-header">
+                        <div>
+                            <h3>Master of Science in Information Technology</h3>
+                            <p>Arizona State University, Tempe, Arizona, United States.</p>
+                        </div>
+                        <p class="year">2024 - 2026</p>
+                    </div>
+                    <p class="description"><b>G.P.A  - 4.0</b></p>
+                </div>
+                <div class="education-item">
+                    <div class="education-header">
+                        <div>
+                            <h3>Bachelor of Technology in Information Technology</h3>
+                            <p>Jawahrlal Nehru Technological University, Hyderabad, Telangana, India.</p>
+                        </div>
+                        <p class="year">2019-2023</p>
+                    </div>
+                    <p class="description"><b>G.P.A  - 8.33</b></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming & Scripting</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Bash/Shell</span>
+                        <span class="skill-tag">Java/Scala</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Web Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java Script</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Redux</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Streamlit</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud & Data Engineering</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS Glue</span>
+                        <span class="skill-tag">AWS Lambda</span>
+                        <span class="skill-tag">AWS S3</span>
+                        <span class="skill-tag">AWS EC2</span>
+                        <span class="skill-tag">AWS Redshift</span>
+                        <span class="skill-tag">AWS EMR</span>
+                        <span class="skill-tag">AWS Kinesis</span>
+                        <span class="skill-tag">AWS Athena</span>
+                        <span class="skill-tag">AWS IAM</span>
+                        <span class="skill-tag">AWS Step Functions</span>
+                        <span class="skill-tag">GCP BigQuery</span>
+                        <span class="skill-tag">GCP Dataflow</span>
+                        <span class="skill-tag">Azure</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Science & ML</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Science & ML</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Big Data & Orchestration</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Apache Spark</span>
+                        <span class="skill-tag">Kafka</span>
+                        <span class="skill-tag">Hadoop</span>
+                        <span class="skill-tag">Airflow</span>
+                        <span class="skill-tag">dbt</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">SQL Server</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">DynamoDB</span>
+                        <span class="skill-tag">Elasticsearch</span>
+                        <span class="skill-tag">OpenSearch</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Software Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Structures & Algorithms</span>
+                        <span class="skill-tag">Object Oriented Design</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="src/Youtube_analytics.jpeg" alt="AI Analytics Platform">
+                    <div class="project-content">
+                        <h3>Real-Time YouTube Streaming Data Analytics Pipeline</h3>
+                        <p>Built a real-time data pipeline to capture and process YouTube streaming metadata, enabling interactive trend analysis and visualization by region, category, and engagement metrics.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">AWS Kinesis</span>
+                            <span class="project-tag">S3</span>
+                            <span class="project-tag">Lambda</span>
+                            <span class="project-tag">Glue</span>
+                            <span class="project-tag">Athena</span>
+                            <span class="project-tag">QuickSight</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Shaik320/Cloud-Based-Data-Lake-for-YouTube-Video-Trend-Analysis" class="project-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="src/full_stack1.png" alt="Task Management System">
+                    <div class="project-content">
+                        <h3>Full-Stack Lodging Marketplace Web Application</h3>
+                        <p> Developed a full-stack web application for a lodging marketplace, enabling users to book accommodations, manage listings, and process payments.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">MongoDB, Express.js, React.js, Node.js</span>
+                            <span class="project-tag">Express.js</span>
+                            <span class="project-tag">React.js</span>
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">JWT</span>
+                            <span class="project-tag">Tailwind CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Shaik320/StaySphere-MERN-Based-Hotel-Booking-and-Hosting-Platform-for-Travelers-and-Property-Owners" class="project-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                                </svg>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="src/Book_recommendation3.png" alt="Collaboration Tool">
+                    <div class="project-content">
+                        <h3>Personalizing-Reads-with-AI-Library-Book-Recommender-System</h3>
+                        <p>Developed an AI-powered Library Book Recommendation System to enhance user engagement by offering personalized book suggestions. By leveraging collaborative filtering and cosine similarity, we analyzed over 10,000+ user-book interactions to deliver accurate and efficient book recommendations tailored to individual preferences.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">NumPy</span>
+                            <span class="project-tag">Scikit-learn</span>
+                            <span class="project-tag">Pandas</span>
+                            <span class="project-tag">Matplotlib</span>
+                            <span class="project-tag">Seaborn</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Shaik320/Personalizing-Reads-with-AI-Library-Book-Recommender-System" class="project-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Professional Experience</h2>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Software Development Lead – Membership Services</h3>
+                            <p>Arizona State University - Sun Devil Fitness Complex</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p>May 2025 - Present</p>
+                            <p>Tempe, AZ</p>
+                        </div>
+                    </div>
+                    
+                <ul class="achievements">
+                        <li>Led enhancements to a full-stack MERN inventory and subscription management system, reducing manual workloads and improving operational efficiency for SDFC gym staff.</li>
+                        <li>Implemented secure authentication and role-based access with JWT, ensuring data privacy and appropriate permissions for staff and supervisors.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Software Development & System Design Consultant</h3>
+                            <p>Arizona State University - The Polytechnic School</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p>Aug 2024 - Present</p>
+                            <p>Tempe, AZ</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="achievements">
+                        <li>Directed full-stack development and architectural guidance for student-driven enterprise systems, integrating secure, scalable cloud-native solutions aligned with real-world business needs.</li>
+                        <li>Mentored 50+ students on system design, code quality, and agile practices, elevating project delivery standards to industry-grade, production-ready levels.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>SDE- Streaming data & Cloud Infrastructure</h3>
+                            <p>Amazon Web Services - AICTE</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p>Oct 2021 - May 2022</p>
+                            <p>Remote</p>
+                        </div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Designed and deployed a scalable, serverless log analytics system using AWS (Lambda, Kinesis, OpenSearch), enabling real-time observability for web traffic.</li>
+                        <li>Delivered enriched logs to Amazon OpenSearch and created dynamic dashboards (e.g., pie charts and heat maps) to visualize browser usage and referral patterns.</li>
+                        <li>Integrated Amazon Cognito for secure user access to OpenSearch Dashboards, enabling business users to explore real-time operational insights.</li>
+                        <li>Architected a serverless ETL pipeline, leveraging AWS Step Functions for automated Glue table validation and Athena view creation, ensuring seamless data processing.</li>
+                        <li>Applied Infrastructure as Code (IaC) principles, streamlining cloud resource provisioning for consistent, reproducible deployments.</li>
+
+                   </ul>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <h3>Let's Connect</h3>
+                    <p>Feel free to reach out for collaborations </p>
+
+                    <p class="footer_title">Designed & Developed by Khaja Bee Shaik.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/Shaik320" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                            <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/khaja-bee-shaik-7880781b2/" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect width="4" height="12" x="2" y="9"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="mailto:shaikkhajabee13902@gmail.com" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>    
+</body>
+</html>
